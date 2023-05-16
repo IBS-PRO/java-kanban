@@ -1,6 +1,4 @@
-package Task;
-
-import Manager.Status;
+package task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +24,8 @@ public class Epic extends Task {
         subtaskIds.clear();
     }
 
-    public void deleteSubtask(Subtask subtask) {
-        subtaskIds.remove(subtask.getId());
+    public void deleteSubtask(int id) {
+        subtaskIds.remove(id);
     }
 
     @Override
@@ -53,5 +51,12 @@ public class Epic extends Task {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public void addSubtaskId(int id) {
+
+    }
+
+    public void cleanSubtaskIds() {
     }
 }
