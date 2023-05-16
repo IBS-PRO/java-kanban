@@ -28,6 +28,15 @@ public class Epic extends Task {
         subtaskIds.remove((Integer) id);
     }
 
+
+    public void addSubtaskId(int id) {
+        subtaskIds.add(id);
+    }
+
+    public void cleanSubtaskIds() {
+        subtaskIds.clear();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,11 +62,4 @@ public class Epic extends Task {
                 '}';
     }
 
-    public void addSubtaskId(int id) {
-        subtaskIds.add(id);
-    }
-
-    public void cleanSubtaskIds() {
-        subtaskIds.clear();
-    }
 }
