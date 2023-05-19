@@ -14,8 +14,8 @@ public class Main {
 
         TaskManager manager = new TaskManager();
         ArrayList<Task> taskCounter;
-        HashMap<Integer, Epic> epicCounter;
-        HashMap<Integer, Subtask> subtaskCounter;
+        ArrayList<Epic> epicCounter;
+        ArrayList<Subtask> subtaskCounter;
 
         System.out.println("\n-------- [START] Проверка работы метода getTasks --------");
         System.out.println(" - таски не добавлены. Ответ метода: " + manager.getTasks());
