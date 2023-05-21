@@ -1,4 +1,4 @@
-package taskManager;
+package manager;
 
 import task.Task;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    private static final List<Task> taskHistory = new LinkedList<>();
+    private final List<Task> taskHistory = new LinkedList<>();
 
     @Override
     public void add(Task task) {

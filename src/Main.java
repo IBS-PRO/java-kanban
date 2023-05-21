@@ -1,6 +1,6 @@
-import taskManager.HistoryManager;
-import taskManager.Managers;
-import taskManager.TaskManager;
+import manager.HistoryManager;
+import manager.Managers;
+import manager.TaskManager;
 
 import task.Status;
 import task.Task;
@@ -8,14 +8,12 @@ import task.Epic;
 import task.Subtask;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
 
         TaskManager taskManager = Managers.getDefault();
-        HistoryManager historyManager = Managers.getDefaultHistory();
 
         ArrayList<Task> taskCounter;
         ArrayList<Epic> epicCounter;
@@ -60,8 +58,8 @@ public class Main {
         taskManager.getSubtask(twelveSubtaskId);
         // getHistory
         System.out.println("[START]  getHistory");
-        for (int i = 0; i < historyManager.getHistory().size(); i++) {
-            System.out.println(historyManager.getHistory().get(i));
+        for (int i = 0; i < taskManager.getHistory().size(); i++) {
+            System.out.println(taskManager.getHistory().get(i));
         }
         System.out.println("[FINISH] getHistory\n");
         System.out.println(" ------------------ КОНЕЦ. ПРОВЕРКА ФУНКЦИОНАЛЬНОСТИ ИСТОРИИ ------------------- ");
