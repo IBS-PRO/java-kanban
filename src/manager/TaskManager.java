@@ -11,13 +11,11 @@ public interface TaskManager {
 
     List<Task> getHistory();
 
-    Integer idGenerator();
+    List<Task> getTasks();
 
-    ArrayList<Task> getTasks();
+    List<Epic> getEpics();
 
-    ArrayList<Epic> getEpics();
-
-    ArrayList<Subtask> getSubtasks();
+    List<Subtask> getSubtasks();
 
     Task getTask(int id);
 
@@ -49,6 +47,6 @@ public interface TaskManager {
 
     void updateSubtask(Subtask subtask);
 
-    ArrayList<Subtask> getSubtaskFromEpic(int epicId);
+    List<Subtask> getSubtaskFromEpic(int epicId);
 
 }

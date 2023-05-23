@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Epic extends Task {
 
-    protected ArrayList<Integer> subtaskIds = new ArrayList<>();
+    protected List<Integer> subtaskIds = new ArrayList<>();
 
     public Epic(Status status, String name, String description) {
         super(status, name, description);
@@ -27,7 +27,6 @@ public class Epic extends Task {
     public void deleteSubtask(int id) {
         subtaskIds.remove((Integer) id);
     }
-
 
     public void addSubtaskId(int id) {
         subtaskIds.add(id);

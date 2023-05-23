@@ -7,7 +7,7 @@ import task.Task;
 import task.Epic;
 import task.Subtask;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -15,9 +15,9 @@ public class Main {
 
         TaskManager taskManager = Managers.getDefault();
 
-        ArrayList<Task> taskCounter;
-        ArrayList<Epic> epicCounter;
-        ArrayList<Subtask> subtaskCounter;
+        List<Task> taskCounter;
+        List<Epic> epicCounter;
+        List<Subtask> subtaskCounter;
 
         System.out.println(" --------------------- ПРОВЕРКА ФУНКЦИОНАЛЬНОСТИ ИСТОРИИ--------------------- ");
         Task one    = new Task(Status.NEW, "Задача №1", "Описание для 1 задачи");
