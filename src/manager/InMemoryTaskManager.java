@@ -5,10 +5,8 @@ import task.Status;
 import task.Subtask;
 import task.Task;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.invoke.MethodHandles;
+import java.util.*;
 
 public class InMemoryTaskManager implements TaskManager {
 
@@ -18,17 +16,35 @@ public class InMemoryTaskManager implements TaskManager {
     private final Map<Integer, Epic> epics = new HashMap<>();
     private final Map<Integer, Subtask> subtasks = new HashMap<>();
 
-    private final HistoryManager historyManager = Managers.getDefaultHistory();
+    private final HistoryManager historyManager;
+
+    public InMemoryTaskManager(HistoryManager historyManager) {
+        this.historyManager = historyManager;
+    }
 
     @Override
     public List<Task> getHistory() {
         return historyManager.getHistory();
     }
 
+    public void addToHistory(int id) {
+        if (epics.containsKey(id)) {
+            historyManager.add(epics.get(id));
+        } else if (subtasks.containsKey(id)) {
+            historyManager.add(subtasks.get(id));
+        } else if (tasks.containsKey(id)) {
+            historyManager.add(tasks.get(id));
+        }
+    }
+
+    public HistoryManager getHistoryManager() {
+        return historyManager;
+    }
+
     @Override
     public ArrayList<Task> getTasks() {
         if (tasks.isEmpty()) {
-            return null;
+            return new ArrayList<>();
         }
         return new ArrayList<>(tasks.values());
     }
@@ -36,7 +52,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public ArrayList<Epic> getEpics() {
         if (epics.isEmpty()) {
-            return null;
+            return new ArrayList<>();
         }
         return new ArrayList<>(epics.values());
     }
@@ -44,7 +60,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public ArrayList<Subtask> getSubtasks() {
         if (subtasks.isEmpty()) {
-            return null;
+            return new ArrayList<>();
         }
         return new ArrayList<>(subtasks.values());
     }

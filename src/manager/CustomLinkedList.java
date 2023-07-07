@@ -8,28 +8,31 @@ import java.util.List;
 import java.util.Map;
 
 public class CustomLinkedList {
-    private final Map<Integer, Node<Task>> history = new HashMap<>();
-
+    private final Map<Integer, CustomLinkedList.Node<Task>> mapToList = new HashMap<>();
+    private int size = 0;
     private Node<Task> first;
     private Node<Task> last;
 
     public void linkLast(Task task) {
-        final Node node = new Node(last, task, null);
-        if (first == null) {
-            first = node;
-        } else {
-            last.next = node;
+        if (mapToList.containsKey(task.getId())) {
+            removeNode(mapToList.get(task.getId()));
         }
-        last = node;
-        history.put(task.getId(), node);
+        final Node<Task> l = last;
+        final Node<Task> newNode = new Node<>(l, task, null);
+        last = newNode;
+        if (l == null) {
+            first = newNode;
+        } else {
+            l.next = newNode;
+        }
+        size++;
+        mapToList.put(task.getId(), newNode);
     }
 
-    List<Task> getTasks() {
+    public List<Task> getTasks() {
         List<Task> tasks = new ArrayList<>();
-        Node node = first;
-        while (node != null) {
-            tasks.add((Task) node.task);
-            node = node.next;
+        for (Node<Task> newNode = first; newNode != null; newNode = newNode.next) {
+            tasks.add(newNode.task);
         }
         return tasks;
     }
@@ -50,14 +53,13 @@ public class CustomLinkedList {
             newNode.next = null;
         }
         newNode.task = null;
+        size--;
     }
 
     public void removeId(int id) {
-        final Node node = history.remove(id);
-        if (node == null) {
-            return;
+        if (mapToList.containsKey(id)) {
+            removeNode(mapToList.get(id));
         }
-        removeNode(node);
     }
 
     private static class Node<T> {
